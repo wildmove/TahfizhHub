@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.tahfizhhub.TahfizhApplication
 import com.example.tahfizhhub.ui.add.AddViewModel
 import com.example.tahfizhhub.ui.detail.DetailViewModel
+import com.example.tahfizhhub.ui.edit.EditViewModel
 import com.example.tahfizhhub.ui.home.HomeViewModel
 
 fun CreationExtras.aplikasiSetoran(): TahfizhApplication =
@@ -23,6 +24,12 @@ object PenyediaViewModel {
         }
         initializer {
             DetailViewModel(
+                createSavedStateHandle(),
+                aplikasiSetoran().container.setoranRepository
+            )
+        }
+        initializer {
+            EditViewModel(
                 createSavedStateHandle(),
                 aplikasiSetoran().container.setoranRepository
             )
