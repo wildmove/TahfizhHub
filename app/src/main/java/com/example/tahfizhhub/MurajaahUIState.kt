@@ -1,5 +1,6 @@
 package com.example.tahfizhhub
 
+import android.health.connect.datatypes.units.Length
 import com.example.tahfizhhub.model.MurajaahData
 
 data class AddMurajaahUIState(
@@ -41,4 +42,9 @@ fun MurajaahData.toDetailMurajaahData(): AddMurajaahEvent =
 
 fun MurajaahData.toUIStateMurajaahData(): AddMurajaahUIState = AddMurajaahUIState(
     addMurajaahEvent = this.toDetailMurajaahData()
+)
+
+data class MurajaahUIState(
+    val listMurajaahData: List<MurajaahData> = listOf(),
+    val dataLength: Int = 0
 )
