@@ -35,7 +35,6 @@ object DestinasiEntry : DestinasiNavigasi {
 @Composable
 fun AddScreen(
     navigateBack: () -> Unit,
-
     modifier: Modifier = Modifier,
     addViewModel: AddViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {

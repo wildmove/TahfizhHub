@@ -7,5 +7,4 @@ data class SetoranData(
     val surat: String = "",
     val ayat: String = "",
     val halaman: String = "",
-    val timestamp: Any? = null
 )

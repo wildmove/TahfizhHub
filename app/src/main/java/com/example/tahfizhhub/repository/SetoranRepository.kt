@@ -32,7 +32,9 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
         SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
 
     override fun getNew(): Flow<List<SetoranData>> = flow {
-        val snapshot = firestore.collection("Kontak")
+        val snapshot = firestore.collection("User")
+            .document("user001")
+            .collection("Setoran")
             .orderBy("nama", Query.Direction.ASCENDING)
             .limit(1)
             .get()
@@ -42,8 +44,10 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     }
 
     override fun getAll(): Flow<List<SetoranData>> = flow {
-        val snapshot = firestore.collection("Resto")
-            .orderBy("timestamp", Query.Direction.ASCENDING)
+        val snapshot = firestore.collection("User")
+            .document("user001")
+            .collection("Setoran")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .await()
 
@@ -53,18 +57,13 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun addSetoran(setoranData: SetoranData): String {
         return try {
+
             val documentReference = firestore.collection("User")
                 .document("user001")
                 .collection("Setoran")
-                .add(setoranData)
-                .await()
-            // Update the Kontak with the Firestore-generated DocumentReference
-            firestore.collection("User")
-                .document("user001")
-                .collection("Setoran")
-                .document(documentReference.id)
-                .set(setoranData.copy(setoranID = documentReference.id)
-                    .copy(timestamp = timestampString))
+                .document(timestampString)
+            documentReference.set(setoranData)
+
             "Berhasil + ${documentReference.id}"
         } catch (e: Exception) {
             Log.w(ContentValues.TAG, "Error adding document", e)
@@ -93,7 +92,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     override fun getSetoranById(setoranID: String): Flow<SetoranData> {
         return flow {
             val snapshot = firestore.collection("User")
-                .document(uid)
+                .document("user001")
                 .collection("Setoran")
                 .document(setoranID)
                 .get()
