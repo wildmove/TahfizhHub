@@ -30,6 +30,15 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
     val timestampString =
         SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
 
+
+    val timeStamp = formatCustomDate(timestampString)
+    fun formatCustomDate(timestamp: Any?): String {
+        if (timestamp is com.google.firebase.Timestamp) {
+            val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+            return sdf.format(timestamp.toDate())
+        }
+        return ""
+    }
     override fun getNewMurajaah(): Flow<List<MurajaahData>> = flow {
         val snapshot = firestore.collection("User")
             .document("user001")
@@ -46,7 +55,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
         val snapshot = firestore.collection("User")
             .document("user001")
             .collection("Murajaah")
-            .orderBy("timestamp", Query.Direction.ASCENDING)
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .await()
 
@@ -61,7 +70,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
                 .collection("Murajaah")
                 .document(timestampString)
 
-            murajaahData.timestamp = timestampString
+            murajaahData.timestamp = timeStamp
 
             // Set the setoranID field with the auto-generated ID
             murajaahData.murajaahID = documentReference.id

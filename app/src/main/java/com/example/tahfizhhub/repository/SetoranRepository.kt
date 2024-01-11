@@ -63,7 +63,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
         val snapshot = firestore.collection("User")
             .document("user001")
             .collection("Setoran")
-            .orderBy("timestamp", Query.Direction.ASCENDING)
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .await()
 

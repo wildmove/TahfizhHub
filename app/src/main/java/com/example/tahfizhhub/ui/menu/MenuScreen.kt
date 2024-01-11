@@ -42,6 +42,7 @@ fun MenuScreen(
     navigateToMurajaah: () -> Unit,
     navigateToSetoran: () -> Unit,
     modifier: Modifier = Modifier,
+
 ) {
     Scaffold {
         Column(

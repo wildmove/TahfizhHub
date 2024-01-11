@@ -169,17 +169,10 @@ fun DataMurajaah(
             )
 
             Text(
-                text = "Tanggal " + murajaahData.timestamp?.let { formatCustomDate(it) } ?: "No Date",
+                text = "Tanggal " + murajaahData.timestamp,
                 style = MaterialTheme.typography.titleLarge,
             )
         }
     }
 }
 
-private fun formatCustomDate(timestamp: Any?): String {
-    if (timestamp is com.google.firebase.Timestamp) {
-        val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
-        return sdf.format(timestamp.toDate())
-    }
-    return ""
-}

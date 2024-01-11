@@ -27,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -98,7 +99,8 @@ fun BodyHome(
 ) {
    Column(
        horizontalAlignment = Alignment.CenterHorizontally,
-       modifier = modifier
+       modifier = modifier,
+
    ) {
        if (itemSetoran.isEmpty()) {
            Text(
@@ -149,6 +151,8 @@ fun DataSetoran(
         Column(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
+
+
         ) {
 
             Text(
@@ -178,12 +182,4 @@ fun DataSetoran(
 
         }
     }
-}
-
-private fun formatCustomDate(timestamp: Any?): String {
-    if (timestamp is com.google.firebase.Timestamp) {
-        val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
-        return sdf.format(timestamp.toDate())
-    }
-    return ""
 }
