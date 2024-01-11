@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,6 +21,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -28,8 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tahfizhhub.model.MurajaahData
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.tahfizhhub.ui.PenyediaViewModel
 import com.example.tahfizhhub.ui.TahfizhTopAppBar
-import com.example.tahfizhhub.ui.setoran.home.formatCustomDate
+import com.example.tahfizhhub.ui.setoran.home.BodyHome
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -44,7 +49,9 @@ fun GetMurajaahScreen(
     navigateBack: () -> Unit,
     navigateToMurajaahEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailMurajaahClick: (String) -> Unit = {}
+    onDetailMurajaahClick: (String) -> Unit = {},
+    viewModel: GetMurajaahViewModel = viewModel(factory = PenyediaViewModel.Factory)
+
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -71,7 +78,14 @@ fun GetMurajaahScreen(
             }
         },
     ) { innerPadding ->
-
+        val uiStateMurajaah by viewModel.murajaahUIState.collectAsState()
+        BodyMurajaah(
+            itemMurajaah = uiStateMurajaah.listMurajaah,
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            onMurajaahClick = onDetailMurajaahClick
+        )
     }
 }
 

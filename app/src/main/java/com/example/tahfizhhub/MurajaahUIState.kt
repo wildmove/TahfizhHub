@@ -45,6 +45,6 @@ fun MurajaahData.toUIStateMurajaahData(): AddMurajaahUIState = AddMurajaahUIStat
 )
 
 data class MurajaahUIState(
-    val listMurajaahData: List<MurajaahData> = listOf(),
+    val listMurajaah: List<MurajaahData> = listOf(),
     val dataLength: Int = 0
 )
