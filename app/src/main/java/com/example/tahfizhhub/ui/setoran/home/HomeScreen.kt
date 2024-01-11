@@ -1,4 +1,4 @@
-package com.example.tahfizhhub.ui.home
+package com.example.tahfizhhub.ui.setoran.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

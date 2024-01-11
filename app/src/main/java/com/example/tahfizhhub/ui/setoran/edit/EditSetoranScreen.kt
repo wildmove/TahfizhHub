@@ -1,4 +1,4 @@
-package com.example.tahfizhhub.ui.edit
+package com.example.tahfizhhub.ui.setoran.edit
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,14 +13,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
 import com.example.tahfizhhub.ui.PenyediaViewModel
 import com.example.tahfizhhub.ui.TahfizhTopAppBar
-import com.example.tahfizhhub.ui.add.AddBody
+import com.example.tahfizhhub.ui.setoran.add.AddBody
 import kotlinx.coroutines.launch
 
 object EditSetoranDestination : DestinasiNavigasi {
     override val route = "item_edit_setoran"
     override val titleRes = "Edit Setoran"
     const val setoranId = "itemId"
-    val routeWithArgs = "${EditSetoranDestination.route}/{$setoranId}"
+    val routeWithArgs = "$route/{$setoranId}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

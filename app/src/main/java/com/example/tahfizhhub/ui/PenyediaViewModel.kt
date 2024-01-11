@@ -6,10 +6,10 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.tahfizhhub.TahfizhApplication
-import com.example.tahfizhhub.ui.add.AddViewModel
-import com.example.tahfizhhub.ui.detail.DetailViewModel
-import com.example.tahfizhhub.ui.edit.EditViewModel
-import com.example.tahfizhhub.ui.home.HomeViewModel
+import com.example.tahfizhhub.ui.setoran.add.AddViewModel
+import com.example.tahfizhhub.ui.setoran.detail.DetailViewModel
+import com.example.tahfizhhub.ui.setoran.edit.EditViewModel
+import com.example.tahfizhhub.ui.setoran.home.HomeViewModel
 
 fun CreationExtras.aplikasiSetoran(): TahfizhApplication =
     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as TahfizhApplication)

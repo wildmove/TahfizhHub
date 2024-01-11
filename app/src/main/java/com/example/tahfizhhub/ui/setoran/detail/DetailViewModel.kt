@@ -1,4 +1,4 @@
-package com.example.tahfizhhub.ui.detail
+package com.example.tahfizhhub.ui.setoran.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

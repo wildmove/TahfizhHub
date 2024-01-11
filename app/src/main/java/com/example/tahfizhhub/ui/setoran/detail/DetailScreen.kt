@@ -1,4 +1,4 @@
-package com.example.tahfizhhub.ui.detail
+package com.example.tahfizhhub.ui.setoran.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

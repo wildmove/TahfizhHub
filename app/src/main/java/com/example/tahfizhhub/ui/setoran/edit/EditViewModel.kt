@@ -1,4 +1,4 @@
-package com.example.tahfizhhub.ui.edit
+package com.example.tahfizhhub.ui.setoran.edit
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -1,6 +1,5 @@
-package com.example.tahfizhhub.ui
+package com.example.tahfizhhub
 
-import com.example.tahfizhhub.AddEvent
 import com.example.tahfizhhub.model.MurajaahData
 
 data class AddMurajaahUIState(
