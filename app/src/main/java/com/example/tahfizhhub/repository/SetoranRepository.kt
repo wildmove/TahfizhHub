@@ -80,7 +80,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun editSetoran(setoranData: SetoranData) {
         firestore.collection("User")
-            .document(uid)
+            .document("user001")
             .collection("Setoran")
             .document(setoranData.setoranID)
             .set(setoranData)
