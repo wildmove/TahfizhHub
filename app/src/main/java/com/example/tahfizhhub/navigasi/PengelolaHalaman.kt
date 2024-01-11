@@ -22,6 +22,8 @@ import com.example.tahfizhhub.ui.menu.DestinasiMenu
 import com.example.tahfizhhub.ui.menu.MenuScreen
 import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahScreen
 import com.example.tahfizhhub.ui.murajaah.add.DestinasiAddMurajaah
+import com.example.tahfizhhub.ui.murajaah.detail.DetailMurajaahDestination
+import com.example.tahfizhhub.ui.murajaah.detail.DetailMurajaahScreen
 import com.example.tahfizhhub.ui.murajaah.get.DestinasiGetMurajaah
 import com.example.tahfizhhub.ui.murajaah.get.GetMurajaahScreen
 
@@ -116,6 +118,24 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 navigateToMurajaahEntry = {
                     navController.navigate(DestinasiAddMurajaah.route)
                 })
+        }
+        composable(
+            route = DetailMurajaahDestination.routeWithArgs,
+            arguments = listOf(navArgument(DetailMurajaahDestination.murajaahId) {
+                type = NavType.StringType
+            })
+        ) {
+                backStackEntry ->
+            val murajaahId = backStackEntry.arguments?.getString(DetailMurajaahDestination.murajaahId)
+            murajaahId?.let {
+                DetailMurajaahScreen(
+                    navigateToEditMurajaah = {
+                        navController.navigate("${EditSetoranDestination.route}/$murajaahId")
+                        println("setoranId: $murajaahId")
+                    },
+                    navigateBack = { navController.popBackStack() }
+                )
+            }
         }
     }
 }
