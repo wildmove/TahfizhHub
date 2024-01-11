@@ -89,7 +89,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun deleteSetoran(setoranID: String) {
         firestore.collection("User")
-            .document(uid)
+            .document("user001")
             .collection("Setoran")
             .document(setoranID)
             .delete()
