@@ -29,8 +29,7 @@ fun TahfizhApp() {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
-
+                .padding(it)
         ) {
             PengelolaHalaman()
         }
