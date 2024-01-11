@@ -172,7 +172,7 @@ fun DataSetoran(
             )
             Spacer(modifier = Modifier.padding(8.dp))
             Text(
-                text = "Tanggal " + setoranData.timestamp?.let { formatCustomDate(it) } ?: "No Date",
+                text = "Tanggal " + setoranData.timestamp,
                 style = MaterialTheme.typography.titleLarge,
             )
 
