@@ -37,21 +37,17 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     }
 
     override fun getAll(): Flow<List<SetoranData>> = flow {
-        val snapshot = firestore.collection("User")
-            .document("user001")
-            .collection("Setoran")
+        val snapshot = firestore.collection("Resto")
             .orderBy("timestamp", Query.Direction.ASCENDING)
             .get()
             .await()
+
         val setoran = snapshot.toObjects(SetoranData::class.java)
         emit(setoran)
     }.flowOn(Dispatchers.IO)
 
     override suspend fun addSetoran(setoranData: SetoranData): String {
         return try {
-
-
-
             val documentReference = firestore.collection("User")
                 .document(uid)
                 .collection("Setoran")
