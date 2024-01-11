@@ -98,7 +98,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
         return flow {
             val snapshot = firestore.collection("User")
                 .document("user001")
-                .collection("Setoran")
+                .collection("Murajaah")
                 .document(murajaahID)
                 .get()
                 .await()

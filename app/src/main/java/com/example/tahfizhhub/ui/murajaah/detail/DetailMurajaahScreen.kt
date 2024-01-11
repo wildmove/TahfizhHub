@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 object DetailMurajaahDestination : DestinasiNavigasi {
     override val route = "murajaah_details"
     override val titleRes = "Detail Murajaah"
-    const val murajaahId = "itemId"
+    const val murajaahId = "itemMurajaahId"
     val routeWithArgs = "$route/{$murajaahId}"
 }
 

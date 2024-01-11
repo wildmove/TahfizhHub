@@ -24,6 +24,8 @@ import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahScreen
 import com.example.tahfizhhub.ui.murajaah.add.DestinasiAddMurajaah
 import com.example.tahfizhhub.ui.murajaah.detail.DetailMurajaahDestination
 import com.example.tahfizhhub.ui.murajaah.detail.DetailMurajaahScreen
+import com.example.tahfizhhub.ui.murajaah.edit.EditMurajaahDestination
+import com.example.tahfizhhub.ui.murajaah.edit.EditMurajaahScreen
 import com.example.tahfizhhub.ui.murajaah.get.DestinasiGetMurajaah
 import com.example.tahfizhhub.ui.murajaah.get.GetMurajaahScreen
 
@@ -45,7 +47,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = {
-                navController.navigate(DestinasiEntry.route)
+                    navController.navigate(DestinasiEntry.route)
                 },
                 onDetailClick = { itemId ->
                     navController.navigate("${DetailDestination.route}/$itemId")
@@ -115,6 +117,9 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 navigateBack = {
                     navController.popBackStack()
                 },
+                onDetailMurajaahClick = { itemMurajaahId ->
+                                        navController.navigate("${DetailMurajaahDestination.route}/$itemMurajaahId")
+                },
                 navigateToMurajaahEntry = {
                     navController.navigate(DestinasiAddMurajaah.route)
                 })
@@ -131,9 +136,23 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 DetailMurajaahScreen(
                     navigateToEditMurajaah = {
                         navController.navigate("${EditSetoranDestination.route}/$murajaahId")
-                        println("setoranId: $murajaahId")
+                        println("murajaahId: $murajaahId")
                     },
                     navigateBack = { navController.popBackStack() }
+                )
+            }
+        }
+        composable(
+            route = EditMurajaahDestination.routeWithArgs,
+            arguments = listOf(navArgument(EditMurajaahDestination.murajaahId) {
+                type = NavType.StringType
+            })
+        ) {backStackEntry ->
+            val murajaahId = backStackEntry.arguments?.getString(EditMurajaahDestination.murajaahId)
+            murajaahId?.let {
+                EditMurajaahScreen(
+                    navigateBack = {navController.popBackStack()},
+                    onNavigateUp = { navController.navigateUp() }
                 )
             }
         }
