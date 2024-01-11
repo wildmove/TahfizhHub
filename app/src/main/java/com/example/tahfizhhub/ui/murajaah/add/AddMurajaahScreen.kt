@@ -53,7 +53,7 @@ fun AddMurajaahScreen(
             )
         }
     ) { innerPadding ->
-        AddBody(
+        AddMurajaahBody(
             addMurajaahUIState = addMurajaahViewModel.addMurajaahUIState,
             onMurajaahValueChange = addMurajaahViewModel::updateAddMurajaahUIState,
             onSaveClick = {
@@ -72,7 +72,7 @@ fun AddMurajaahScreen(
 }
 
 @Composable
-fun AddBody(
+fun AddMurajaahBody(
     addMurajaahUIState: AddMurajaahUIState,
     onMurajaahValueChange: (AddMurajaahEvent) -> Unit,
     onSaveClick: () -> Unit,
