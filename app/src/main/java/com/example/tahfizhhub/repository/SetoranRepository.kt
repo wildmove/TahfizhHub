@@ -58,14 +58,17 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun addSetoran(setoranData: SetoranData): String {
         return try {
-
             val documentReference = firestore.collection("User")
                 .document("user001")
                 .collection("Setoran")
                 .document(timestampString)
 
+            setoranData.timestamp = timestampString
+
+            // Set the setoranID field with the auto-generated ID
             setoranData.setoranID = documentReference.id
-            setoranData.timestamp = FieldValue.serverTimestamp()
+
+            // Use the document reference to set the data in the Firestore collection
             documentReference.set(setoranData)
 
             "Berhasil + ${documentReference.id}"

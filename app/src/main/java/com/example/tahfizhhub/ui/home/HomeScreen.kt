@@ -35,6 +35,8 @@ import com.example.tahfizhhub.model.SetoranData
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
 import com.example.tahfizhhub.ui.PenyediaViewModel
 import com.example.tahfizhhub.ui.TahfizhTopAppBar
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
@@ -56,7 +58,7 @@ fun HomeScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TahfizhTopAppBar(
-                title = "Kontak",
+                title = "Data Setoran",
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack
@@ -138,6 +140,7 @@ fun DataSetoran(
     setoranData: SetoranData,
     modifier: Modifier = Modifier
 ) {
+
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -164,12 +167,19 @@ fun DataSetoran(
                 text = "Halaman " + setoranData.halaman,
                 style = MaterialTheme.typography.titleLarge,
             )
+
             Text(
-                text = "Tanggal " + setoranData.setoranID,
+                text = "Tanggal " + setoranData.timestamp?.let { formatCustomDate(it) } ?: "No Date",
                 style = MaterialTheme.typography.titleLarge,
             )
         }
     }
+}
 
-
+private fun formatCustomDate(timestamp: Any?): String {
+    if (timestamp is com.google.firebase.Timestamp) {
+        val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+        return sdf.format(timestamp.toDate())
+    }
+    return ""
 }
