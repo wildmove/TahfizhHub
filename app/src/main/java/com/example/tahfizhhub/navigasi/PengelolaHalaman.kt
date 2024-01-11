@@ -22,12 +22,14 @@ import com.example.tahfizhhub.ui.menu.DestinasiMenu
 import com.example.tahfizhhub.ui.menu.MenuScreen
 import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahScreen
 import com.example.tahfizhhub.ui.murajaah.add.DestinasiAddMurajaah
+import com.example.tahfizhhub.ui.murajaah.get.DestinasiGetMurajaah
+import com.example.tahfizhhub.ui.murajaah.get.GetMurajaahScreen
 
 @Composable
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiLogin.route,
+        startDestination = DestinasiMenu.route,
         modifier = Modifier
     ) {
         composable(DestinasiLogin.route) {
@@ -35,6 +37,9 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 onNavToHomePage = {  },
                 onNavToSignUpPage = { })
         }
+
+
+        //Setoran
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = {
@@ -55,9 +60,9 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             })
         }
         composable(DestinasiMenu.route) {
-            MenuScreen(navigateToItemEntry = {
-                navController.navigate(DestinasiEntry.route)
-            }, navigateToMenu = {
+            MenuScreen(navigateToMurajaah = {
+                navController.navigate(DestinasiGetMurajaah.route)
+            }, navigateToSetoran = {
                 navController.navigate(DestinasiHome.route)
             })
         }
@@ -93,10 +98,24 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 )
             }
         }
+
+
+
+
+        //Murajaah
         composable(DestinasiAddMurajaah.route) {
             AddMurajaahScreen(navigateBack = {
                 navController.popBackStack()
             })
+        }
+        composable(DestinasiGetMurajaah.route) {
+            GetMurajaahScreen(
+                navigateBack = {
+                    navController.popBackStack()
+                },
+                navigateToMurajaahEntry = {
+                    navController.navigate(DestinasiAddMurajaah.route)
+                })
         }
     }
 }

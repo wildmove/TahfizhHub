@@ -45,7 +45,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
     override fun getAllMurajaah(): Flow<List<MurajaahData>> = flow {
         val snapshot = firestore.collection("User")
             .document("user001")
-            .collection("Setoran")
+            .collection("Murajaah")
             .orderBy("timestamp", Query.Direction.ASCENDING)
             .get()
             .await()

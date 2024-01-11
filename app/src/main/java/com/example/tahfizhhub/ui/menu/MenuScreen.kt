@@ -36,8 +36,8 @@ object DestinasiMenu : DestinasiNavigasi {
 
 @Composable
 fun MenuScreen(
-    navigateToItemEntry: () -> Unit,
-    navigateToMenu: () -> Unit,
+    navigateToMurajaah: () -> Unit,
+    navigateToSetoran: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -133,7 +133,7 @@ fun MenuScreen(
         Spacer(modifier = Modifier.size(20.dp))
 
         Button(
-            onClick = navigateToMenu,
+            onClick = navigateToSetoran,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
@@ -145,7 +145,7 @@ fun MenuScreen(
         Spacer(modifier = Modifier.size(20.dp))
 
         Button(
-            onClick = navigateToItemEntry,
+            onClick = navigateToMurajaah,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(

@@ -39,7 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 object DestinasiGetMurajaah : DestinasiNavigasi {
-    override val route = "murajaah_data"
+    override val route = "murajaahdata"
     override val titleRes = "Data Murajaah"
 }
 

@@ -25,7 +25,7 @@ class GetMurajaahViewModel(private val murajaahRepository: MurajaahRepository): 
     val murajaahUIState: StateFlow<MurajaahUIState> = murajaahRepository.getAllMurajaah()
         .filterNotNull()
         .map {
-            MurajaahUIState (listMurajaahData = it.toList(), it.size)
+            MurajaahUIState (listMurajaah = it.toList(), it.size)
         }
         .stateIn(
             scope = viewModelScope,
