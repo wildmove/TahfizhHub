@@ -61,7 +61,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override fun getAll(): Flow<List<SetoranData>> = flow {
         val snapshot = firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Setoran")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
@@ -76,7 +76,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
 
             val documentReference = firestore.collection("User")
-                .document("user001")
+                .document(uid)
                 .collection("Setoran")
                 .document(timestampString)
 
@@ -97,7 +97,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun editSetoran(setoranData: SetoranData) {
         firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Setoran")
             .document(setoranData.setoranID)
             .set(setoranData)
@@ -106,7 +106,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun deleteSetoran(setoranID: String) {
         firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Setoran")
             .document(setoranID)
             .delete()
@@ -116,7 +116,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     override fun getSetoranById(setoranID: String): Flow<SetoranData> {
         return flow {
             val snapshot = firestore.collection("User")
-                .document("user001")
+                .document(uid)
                 .collection("Setoran")
                 .document(setoranID)
                 .get()

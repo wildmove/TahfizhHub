@@ -53,7 +53,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
 
     override fun getAllMurajaah(): Flow<List<MurajaahData>> = flow {
         val snapshot = firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Murajaah")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
@@ -66,7 +66,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
     override suspend fun addMurajaah(murajaahData: MurajaahData): String {
         return try {
             val documentReference = firestore.collection("User")
-                .document("user001")
+                .document(uid)
                 .collection("Murajaah")
                 .document(timestampString)
 
@@ -87,7 +87,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
 
     override suspend fun editMurajaah(murajaahData: MurajaahData) {
         firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Murajaah")
             .document(murajaahData.murajaahID)
             .set(murajaahData)
@@ -96,7 +96,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
 
     override suspend fun deleteMurajaah(murajaahID: String) {
         firestore.collection("User")
-            .document("user001")
+            .document(uid)
             .collection("Murajaah")
             .document(murajaahID)
             .delete()
@@ -106,7 +106,7 @@ class MurajaahRepositoryImpl(private val firestore : FirebaseFirestore) : Muraja
     override fun getMurajaahById(murajaahID: String): Flow<MurajaahData> {
         return flow {
             val snapshot = firestore.collection("User")
-                .document("user001")
+                .document(uid)
                 .collection("Murajaah")
                 .document(murajaahID)
                 .get()

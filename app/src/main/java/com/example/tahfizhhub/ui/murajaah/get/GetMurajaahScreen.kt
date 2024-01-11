@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -152,13 +153,16 @@ fun DataMurajaah(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "Juz " + murajaahData.juz,
-                style = MaterialTheme.typography.titleMedium
+                text = "Surah " + murajaahData.surat,
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Medium
             )
             Text(
-                text = "Surah " + murajaahData.surat,
-                style = MaterialTheme.typography.titleLarge,
+                text = "Juz " + murajaahData.juz,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
             )
+
             Text(
                 text = "ayat " + murajaahData.ayat,
                 style = MaterialTheme.typography.titleLarge,
@@ -167,7 +171,7 @@ fun DataMurajaah(
                 text = "Halaman " + murajaahData.halaman,
                 style = MaterialTheme.typography.titleLarge,
             )
-
+            Spacer(modifier = Modifier.padding(8.dp))
             Text(
                 text = "Tanggal " + murajaahData.timestamp,
                 style = MaterialTheme.typography.titleLarge,

@@ -1,5 +1,7 @@
 package com.example.tahfizhhub.navigasi
 
+import DestinasiLogin
+import LoginScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -16,8 +18,6 @@ import com.example.tahfizhhub.ui.setoran.edit.EditSetoranDestination
 import com.example.tahfizhhub.ui.setoran.edit.EditSetoranScreen
 import com.example.tahfizhhub.ui.setoran.home.DestinasiHome
 import com.example.tahfizhhub.ui.setoran.home.HomeScreen
-import com.example.tahfizhhub.ui.login.DestinasiLogin
-import com.example.tahfizhhub.ui.login.LoginScreen
 import com.example.tahfizhhub.ui.menu.DestinasiMenu
 import com.example.tahfizhhub.ui.menu.MenuScreen
 import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahScreen
@@ -33,13 +33,17 @@ import com.example.tahfizhhub.ui.murajaah.get.GetMurajaahScreen
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiMenu.route,
+        startDestination = DestinasiLogin.route,
         modifier = Modifier
     ) {
         composable(DestinasiLogin.route) {
             LoginScreen(
-                onNavToHomePage = {  },
-                onNavToSignUpPage = { })
+                navigateToHomePage = {
+                                  navController.navigate(DestinasiMenu.route)
+                },
+                onNavToSignUpPage = {
+
+                })
         }
 
         //Setoran
