@@ -1,11 +1,14 @@
 package com.example.tahfizhhub.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Card
@@ -30,6 +33,28 @@ fun HomeScreen(
 ) {
 
 }
+
+@Composable
+fun ListSetoran(
+    itemSetoran: List<SetoranData>,
+    modifier: Modifier = Modifier,
+    onItemClick: (SetoranData) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier
+    ) {
+        this.items(itemSetoran, key = { it.setoranID }) { setoranData ->
+            DataSetoran(
+                setoranData = setoranData,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onItemClick(setoranData) }
+            )
+            Spacer(modifier = Modifier.padding(8.dp))
+        }
+    }
+}
+
 @Composable
 fun DataSetoran(
     setoranData: SetoranData,
