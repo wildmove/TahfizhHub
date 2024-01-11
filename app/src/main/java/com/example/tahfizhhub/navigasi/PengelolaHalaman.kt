@@ -12,6 +12,8 @@ import com.example.tahfizhhub.ui.add.AddScreen
 import com.example.tahfizhhub.ui.add.DestinasiEntry
 import com.example.tahfizhhub.ui.detail.DetailDestination
 import com.example.tahfizhhub.ui.detail.DetailScreen
+import com.example.tahfizhhub.ui.edit.EditSetoranDestination
+import com.example.tahfizhhub.ui.edit.EditSetoranScreen
 import com.example.tahfizhhub.ui.home.DestinasiHome
 import com.example.tahfizhhub.ui.home.HomeScreen
 import com.example.tahfizhhub.ui.menu.DestinasiMenu
@@ -61,12 +63,27 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             setoranId?.let {
                 DetailScreen(
                     navigateToEditItem = {
-                        navController.navigate("")
+                        navController.navigate("${EditSetoranDestination.route}/$setoranId")
                         println("setoranId: $setoranId")
                     },
                     navigateBack = { navController.popBackStack() }
                 )
             }
+        }
+        composable(
+            route = EditSetoranDestination.routeWithArgs,
+            arguments = listOf(navArgument(EditSetoranDestination.setoranId) {
+                type = NavType.StringType
+            })
+        ) {backStackEntry ->
+            val setoranId = backStackEntry.arguments?.getString(EditSetoranDestination.setoranId)
+            setoranId?.let {
+                EditSetoranScreen(
+                    navigateBack = {navController.popBackStack()},
+                    onNavigateUp = { navController.navigateUp() }
+                )
+            }
+
         }
     }
 }
