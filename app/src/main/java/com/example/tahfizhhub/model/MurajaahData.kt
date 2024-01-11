@@ -1,7 +1,7 @@
 package com.example.tahfizhhub.model
 
 data class MurajaahData(
-    var setoranID: String = "",
+    var murajaahID: String = "",
     val juz: String = "",
     val surat: String = "",
     val ayat: String = "",
