@@ -22,6 +22,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
@@ -30,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tahfizhhub.DetailUIState
 import com.example.tahfizhhub.model.SetoranData
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
@@ -41,8 +43,8 @@ import kotlinx.coroutines.launch
 object DetailDestination : DestinasiNavigasi {
     override val route = "item_details"
     override val titleRes = "Detail Setoran"
-    const val setoranID = "itemId"
-    val routeWithArgs = "$route/{$setoranID}"
+    const val setoranId = "itemId"
+    val routeWithArgs = "$route/{$setoranId}"
 }
 
 
@@ -85,7 +87,7 @@ fun DetailScreen(
                 // change occurs, the Activity will be recreated and the rememberCoroutineScope will
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
-                    viewModel.deleteKontak()
+                    viewModel.deleteSetoran()
                     navigateBack()
                 }
             },
