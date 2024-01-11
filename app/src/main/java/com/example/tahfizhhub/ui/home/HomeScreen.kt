@@ -17,7 +17,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.tahfizhhub.model.SetoranData
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
@@ -32,6 +34,32 @@ fun HomeScreen(
     navigateToItemEntry: () -> Unit
 ) {
 
+}
+
+@Composable
+fun BodyHome(
+    itemSetoran: List<SetoranData>,
+    modifier: Modifier = Modifier,
+    onSetoranClick: (String) -> Unit = {}
+) {
+   Column(
+       horizontalAlignment = Alignment.CenterHorizontally,
+       modifier = modifier
+   ) {
+       if (itemSetoran.isEmpty()) {
+           Text(
+               text = "Tidak ada data Setoran",
+               textAlign = TextAlign.Center,
+               style = MaterialTheme.typography.titleLarge
+           )
+       } else {
+           ListSetoran(
+               itemSetoran = itemSetoran,
+               modifier = Modifier.padding(horizontal = 8.dp),
+               onItemClick = { onSetoranClick(it.setoranID) }
+           )
+       }
+   }
 }
 
 @Composable
