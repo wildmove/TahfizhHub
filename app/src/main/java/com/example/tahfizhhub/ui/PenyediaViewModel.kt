@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.tahfizhhub.TahfizhApplication
+import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahViewModel
 import com.example.tahfizhhub.ui.setoran.add.AddViewModel
 import com.example.tahfizhhub.ui.setoran.detail.DetailViewModel
 import com.example.tahfizhhub.ui.setoran.edit.EditViewModel
@@ -32,6 +33,11 @@ object PenyediaViewModel {
             EditViewModel(
                 createSavedStateHandle(),
                 aplikasiSetoran().container.setoranRepository
+            )
+        }
+        initializer {
+            AddMurajaahViewModel(
+                aplikasiSetoran().murajaahContainer.murajaahRepository
             )
         }
     }
