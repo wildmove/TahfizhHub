@@ -3,13 +3,13 @@ package com.example.tahfizhhub.repository
 import com.google.firebase.firestore.FirebaseFirestore
 
 interface AppContainer {
-    val setoranRepository : SetoranRepository
+    val tahfizhRepository : TahfizhRepository
 }
 
-class SetoranContainer : AppContainer {
+class TahfizhContainer : AppContainer {
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    override val setoranRepository: SetoranRepository by lazy {
-        SetoranRepositoryImpl(firestore)
+    override val tahfizhRepository: TahfizhRepository by lazy {
+        TahfizhRepositoryImpl(firestore)
     }
 }
