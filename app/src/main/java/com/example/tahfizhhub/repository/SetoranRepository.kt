@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.util.Log
 import com.example.tahfizhhub.model.SetoranData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +48,7 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
         val snapshot = firestore.collection("User")
             .document("user001")
             .collection("Setoran")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .orderBy("timestamp", Query.Direction.ASCENDING)
             .get()
             .await()
 
@@ -62,6 +63,9 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
                 .document("user001")
                 .collection("Setoran")
                 .document(timestampString)
+
+            setoranData.setoranID = documentReference.id
+            setoranData.timestamp = FieldValue.serverTimestamp()
             documentReference.set(setoranData)
 
             "Berhasil + ${documentReference.id}"

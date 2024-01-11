@@ -21,6 +21,7 @@ fun AddEvent.toSetoranData() = SetoranData(
     surat = surat,
     ayat = ayat,
     halaman = halaman,
+    timestamp = timestamp
 )
 
 data class DetailUIState(
@@ -34,6 +35,7 @@ fun SetoranData.toDetailSetoranData(): AddEvent =
         surat = surat,
         ayat = ayat,
         halaman = halaman,
+        timestamp = timestamp
     )
 
 fun SetoranData.toUIStateSetoranData(): AddUIState = AddUIState(

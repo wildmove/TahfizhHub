@@ -146,28 +146,30 @@ fun DataSetoran(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = setoranData.surat,
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Spacer(Modifier.weight(1f))
-                Icon(
-                    imageVector = Icons.Default.Phone,
-                    contentDescription = null,
-                )
 
-                Text(
-                    text = setoranData.halaman,
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
+
             Text(
-                text = setoranData.juz,
+                text = "Juz " + setoranData.juz,
                 style = MaterialTheme.typography.titleMedium
+            )
+            Text(
+                text = "Surah " + setoranData.surat,
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = "ayat " + setoranData.ayat,
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = "Halaman " + setoranData.halaman,
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = "Tanggal " + setoranData.setoranID,
+                style = MaterialTheme.typography.titleLarge,
             )
         }
     }
+
+
 }
