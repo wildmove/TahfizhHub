@@ -38,6 +38,15 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     val timestampString =
         SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
 
+    val timeStamp = formatCustomDate(timestampString)
+    fun formatCustomDate(timestamp: Any?): String {
+        if (timestamp is com.google.firebase.Timestamp) {
+            val sdf = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+            return sdf.format(timestamp.toDate())
+        }
+        return ""
+    }
+
     override fun getNew(): Flow<List<SetoranData>> = flow {
         val snapshot = firestore.collection("User")
             .document("user001")
@@ -64,12 +73,14 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
 
     override suspend fun addSetoran(setoranData: SetoranData): String {
         return try {
+
+
             val documentReference = firestore.collection("User")
                 .document("user001")
                 .collection("Setoran")
                 .document(timestampString)
 
-            setoranData.timestamp = timestampString
+            setoranData.timestamp = timeStamp
 
             // Set the setoranID field with the auto-generated ID
             setoranData.setoranID = documentReference.id

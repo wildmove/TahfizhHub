@@ -28,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -141,25 +142,26 @@ fun DataSetoran(
     setoranData: SetoranData,
     modifier: Modifier = Modifier
 ) {
-
     Card(
         modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Column(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
-
-            Text(
-                text = "Juz " + setoranData.juz,
-                style = MaterialTheme.typography.titleMedium
-            )
             Text(
                 text = "Surah " + setoranData.surat,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Medium
             )
+            Text(
+                text = "Juz " + setoranData.juz,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
+            )
+
             Text(
                 text = "ayat " + setoranData.ayat,
                 style = MaterialTheme.typography.titleLarge,
@@ -168,11 +170,12 @@ fun DataSetoran(
                 text = "Halaman " + setoranData.halaman,
                 style = MaterialTheme.typography.titleLarge,
             )
-
+            Spacer(modifier = Modifier.padding(8.dp))
             Text(
                 text = "Tanggal " + setoranData.timestamp?.let { formatCustomDate(it) } ?: "No Date",
                 style = MaterialTheme.typography.titleLarge,
             )
+
         }
     }
 }

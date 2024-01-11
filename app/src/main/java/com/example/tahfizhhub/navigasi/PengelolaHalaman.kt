@@ -42,7 +42,6 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 onNavToSignUpPage = { })
         }
 
-
         //Setoran
         composable(DestinasiHome.route) {
             HomeScreen(
@@ -135,7 +134,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             murajaahId?.let {
                 DetailMurajaahScreen(
                     navigateToEditMurajaah = {
-                        navController.navigate("${EditSetoranDestination.route}/$murajaahId")
+                        navController.navigate("${EditMurajaahDestination.route}/$murajaahId")
                         println("murajaahId: $murajaahId")
                     },
                     navigateBack = { navController.popBackStack() }
