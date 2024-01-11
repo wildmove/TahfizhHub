@@ -16,6 +16,8 @@ import com.example.tahfizhhub.ui.edit.EditSetoranDestination
 import com.example.tahfizhhub.ui.edit.EditSetoranScreen
 import com.example.tahfizhhub.ui.home.DestinasiHome
 import com.example.tahfizhhub.ui.home.HomeScreen
+import com.example.tahfizhhub.ui.login.DestinasiLogin
+import com.example.tahfizhhub.ui.login.LoginScreen
 import com.example.tahfizhhub.ui.menu.DestinasiMenu
 import com.example.tahfizhhub.ui.menu.MenuScreen
 
@@ -23,9 +25,14 @@ import com.example.tahfizhhub.ui.menu.MenuScreen
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiMenu.route,
+        startDestination = DestinasiLogin.route,
         modifier = Modifier
     ) {
+        composable(DestinasiLogin.route) {
+            LoginScreen(
+                onNavToHomePage = {  },
+                onNavToSignUpPage = { })
+        }
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = {
