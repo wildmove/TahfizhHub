@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.tahfizhhub.TahfizhApplication
+import com.example.tahfizhhub.ui.add.AddViewModel
 import com.example.tahfizhhub.ui.home.HomeViewModel
 
 fun CreationExtras.aplikasiSetoran(): TahfizhApplication =
@@ -12,6 +13,9 @@ fun CreationExtras.aplikasiSetoran(): TahfizhApplication =
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
+        initializer {
+            AddViewModel(aplikasiSetoran().container.setoranRepository)
+        }
         initializer {
             HomeViewModel(aplikasiSetoran().container.setoranRepository)
         }

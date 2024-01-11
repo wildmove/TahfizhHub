@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tahfizhhub.ui.add.AddScreen
+import com.example.tahfizhhub.ui.add.DestinasiEntry
 import com.example.tahfizhhub.ui.detail.DetailDestination
 import com.example.tahfizhhub.ui.home.DestinasiHome
 import com.example.tahfizhhub.ui.home.HomeScreen
@@ -19,12 +21,17 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
     ) {
         composable(DestinasiHome.route) {
             HomeScreen(navigateToItemEntry = {
-                navController.navigate("")
+                navController.navigate(DestinasiEntry.route)
             },
                 onDetailClick = { itemId ->
                     navController.navigate("${DetailDestination.route}/$itemId")
                     println("itemId: $itemId")
                 })
+        }
+        composable(DestinasiEntry.route) {
+            AddScreen(navigateBack = {
+                navController.popBackStack()
+            })
 
         }
     }

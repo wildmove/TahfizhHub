@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 interface SetoranRepository {
@@ -25,6 +28,8 @@ interface SetoranRepository {
 class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : SetoranRepository {
     val user = FirebaseAuth.getInstance().currentUser
     val uid = user?.uid.toString()
+    val timestampString =
+        SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
 
     override fun getNew(): Flow<List<SetoranData>> = flow {
         val snapshot = firestore.collection("Kontak")
@@ -49,13 +54,17 @@ class SetoranRepositoryImpl(private val firestore : FirebaseFirestore) : Setoran
     override suspend fun addSetoran(setoranData: SetoranData): String {
         return try {
             val documentReference = firestore.collection("User")
-                .document(uid)
+                .document("user001")
                 .collection("Setoran")
                 .add(setoranData)
                 .await()
             // Update the Kontak with the Firestore-generated DocumentReference
-            firestore.collection("Kontak").document(documentReference.id)
-                .set(setoranData.copy(setoranID = documentReference.id))
+            firestore.collection("User")
+                .document("user001")
+                .collection("Setoran")
+                .document(documentReference.id)
+                .set(setoranData.copy(setoranID = documentReference.id)
+                    .copy(timestamp = timestampString))
             "Berhasil + ${documentReference.id}"
         } catch (e: Exception) {
             Log.w(ContentValues.TAG, "Error adding document", e)
