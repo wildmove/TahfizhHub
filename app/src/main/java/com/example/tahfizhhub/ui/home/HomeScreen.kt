@@ -23,13 +23,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tahfizhhub.model.SetoranData
 import com.example.tahfizhhub.navigasi.DestinasiNavigasi
+import com.example.tahfizhhub.ui.PenyediaViewModel
 import com.example.tahfizhhub.ui.TahfizhTopAppBar
 
 object DestinasiHome : DestinasiNavigasi {
@@ -42,8 +46,8 @@ object DestinasiHome : DestinasiNavigasi {
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (String) -> Unit = {}
-
+    onDetailClick: (String) -> Unit = {},
+    viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -71,7 +75,7 @@ fun HomeScreen(
     ) { innerPadding ->
         val uiStateSiswa by viewModel.homeUIState.collectAsState()
         BodyHome(
-            itemSetoran = uiStateSiswa.listKontak,
+            itemSetoran = uiStateSiswa.listSetoran,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
