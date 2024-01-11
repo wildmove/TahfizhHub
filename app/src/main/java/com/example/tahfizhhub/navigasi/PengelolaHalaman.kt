@@ -20,6 +20,8 @@ import com.example.tahfizhhub.ui.login.DestinasiLogin
 import com.example.tahfizhhub.ui.login.LoginScreen
 import com.example.tahfizhhub.ui.menu.DestinasiMenu
 import com.example.tahfizhhub.ui.menu.MenuScreen
+import com.example.tahfizhhub.ui.murajaah.add.AddMurajaahScreen
+import com.example.tahfizhhub.ui.murajaah.add.DestinasiAddMurajaah
 
 @Composable
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
@@ -90,7 +92,11 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                     onNavigateUp = { navController.navigateUp() }
                 )
             }
-
+        }
+        composable(DestinasiAddMurajaah.route) {
+            AddMurajaahScreen(navigateBack = {
+                navController.popBackStack()
+            })
         }
     }
 }
