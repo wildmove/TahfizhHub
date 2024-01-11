@@ -11,5 +11,6 @@ class TahfizhApplication : Application() {
         super.onCreate()
 
         container = SetoranContainer()
+        //
     }
 }
