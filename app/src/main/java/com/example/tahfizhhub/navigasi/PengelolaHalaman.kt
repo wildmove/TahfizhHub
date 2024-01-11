@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tahfizhhub.ui.detail.DetailDestination
 import com.example.tahfizhhub.ui.home.DestinasiHome
 import com.example.tahfizhhub.ui.home.HomeScreen
 
@@ -20,7 +21,11 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             HomeScreen(navigateToItemEntry = {
                 navController.navigate("")
             },
-                )
+                onDetailClick = { itemId ->
+                    navController.navigate("${DetailDestination.route}/$itemId")
+                    println("itemId: $itemId")
+                })
+
         }
     }
 }
